@@ -1,11 +1,11 @@
 import "./Register.css";
 
+import { Navigate, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 
 import Api from "../../Api";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -23,6 +23,10 @@ const Register = () => {
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+  };
+
+  const login = () => {
+    navigate("/login");
   };
 
   const handleSubmit = async (e) => {
@@ -76,7 +80,10 @@ const Register = () => {
           onChange={handlePasswordChange}
           required
         />
-        <button type="submit">Register</button>
+        <div className="btns">
+          <button type="submit">Register</button>
+          <button onClick={login}>Login</button>
+        </div>
       </form>
     </div>
   );

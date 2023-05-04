@@ -47,3 +47,9 @@
 .registration-page button:hover {
   background-color: #023e8a;
 }
+
+.btns {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}

@@ -11,6 +11,7 @@ const Result = () => {
   const navigate = useNavigate();
   const { dispatch } = useContext(AuthContext);
   const totalPoints = localStorage.getItem("totalScore");
+  const timeTaken = localStorage.getItem("timeTaken");
   const [softSkills, setSoftSkills] = useState([]);
   useEffect(() => {
     const skill1 = [1, 2, 3, 4, 5, 8, 9, 10, 11],
@@ -47,6 +48,7 @@ const Result = () => {
           {
             name: localStorage.name,
             email: localStorage.email,
+            timeTaken: timeTaken,
             softSkills: arr,
             score: (totalPoints / 12).toFixed(2),
           },
@@ -100,6 +102,10 @@ const Result = () => {
       <div className="total-points">
         <h5>Total Points:</h5>
         <p>{(totalPoints / 12).toFixed(2)}/100</p>
+      </div>
+      <div className="total-points">
+        <h5>Time Taken:</h5>
+        <p>{timeTaken} sec</p>
       </div>
       <div className="buttons">
         <button className="leaderboard-button" onClick={leaderBoard}>

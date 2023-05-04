@@ -45,8 +45,11 @@ const Puzzle6 = () => {
       const timeTaken = 300 - time;
       const puzzleScore = Math.max(Math.floor((300 - timeTaken) / 3), 0); // Max score of 100
       let currScore = Number(localStorage.getItem("totalScore"));
+      let currTime = Number(localStorage.getItem("timeTaken"));
       currScore += puzzleScore;
+      currTime += timeTaken;
       localStorage.setItem("totalScore", currScore);
+      localStorage.setItem("timeTaken", currTime);
       localStorage.setItem("point6", puzzleScore);
       setAnswer("");
     }

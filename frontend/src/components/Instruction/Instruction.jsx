@@ -17,6 +17,7 @@ const Instruction = () => {
       if (res) {
         localStorage.setItem("questions", JSON.stringify(res.data));
         localStorage.setItem("totalScore", 0);
+        localStorage.setItem("timeTaken", 0);
         for (let i = 1; i <= 12; i++) {
           localStorage.setItem(`point${i}`, 0);
         }

@@ -44,6 +44,7 @@ const LeaderBoard = () => {
             <th>Name</th>
             <th>Email</th>
             <th>Total Score</th>
+            <th>Time Taken</th>
             <th>Soft Skills</th>
           </tr>
         </thead>
@@ -54,6 +55,7 @@ const LeaderBoard = () => {
               <td>{item.name}</td>
               <td>{item.email}</td>
               <td>{item.score}/100</td>
+              <td>{item.timeTaken} sec</td>
               <td>
                 {item.softSkills.map((skill) => (
                   <p key={skill.name}>

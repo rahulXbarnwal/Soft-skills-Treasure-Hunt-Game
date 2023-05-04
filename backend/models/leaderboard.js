@@ -14,6 +14,10 @@ const leaderBoardSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  timeTaken: {
+    type: Number,
+    required: true
+  },
   softSkills: [
     {
       name: {
