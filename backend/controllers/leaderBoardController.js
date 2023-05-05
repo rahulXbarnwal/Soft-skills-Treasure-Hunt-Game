@@ -49,7 +49,7 @@ exports.skillAnalysis = async (req, res) => {
       { name: 1, softSkills: 1, _id: 1 }
     );
     res.status(200).json(result);
-  } catch (err) {
-    res.status(500).json(err);
+  } catch (error) {
+    res.status(500).json(error);
   }
 };
