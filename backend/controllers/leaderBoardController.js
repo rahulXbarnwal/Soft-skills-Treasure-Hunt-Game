@@ -21,3 +21,35 @@ exports.getAllScores = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+exports.scoreAnalysis = async (req, res) => {
+  try {
+    const result = await LeaderBoard.find({}, { name: 1, score: 1, _id: 1 });
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+exports.timeAnalysis = async (req, res) => {
+  try {
+    const result = await LeaderBoard.find(
+      {},
+      { name: 1, timeTaken: 1, _id: 1 }
+    );
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+exports.skillAnalysis = async (req, res) => {
+  try {
+    const result = await LeaderBoard.find(
+      {},
+      { name: 1, softSkills: 1, _id: 1 }
+    );
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
