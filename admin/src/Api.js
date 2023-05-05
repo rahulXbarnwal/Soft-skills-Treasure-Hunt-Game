@@ -1,4 +1,5 @@
-const url = "http://localhost:8000/api";
+// const url = "http://localhost:8000/api";
+const url = "https://elitmuspuzzle.onrender.com/api";
 
 const Api = {
   login: url + "/auth/login",
