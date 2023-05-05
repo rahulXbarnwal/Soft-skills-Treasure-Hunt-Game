@@ -6,7 +6,9 @@
 3. Node.js and Express.js
 4. MongoDB
 
-### Hosted On - https://elitmus-puzzle.onrender.com/
+### Main Puzzle Application Website Hosted Link - https://elitmus-puzzle-webapp.netlify.app/
+### Admin Dashboard Hosted Link - https://admin-portal-elitmus-puzzle.netlify.app/
+### RestAPIs Postman Documentation - https://www.postman.com/supply-cosmologist-35754212/workspace/quizapp/collection/24605425-767b6c2a-316b-4419-bfbb-f19e278451ab?action=share&creator=24605425
 <hr>
 
 ## The Treasure Hunt Game:-
