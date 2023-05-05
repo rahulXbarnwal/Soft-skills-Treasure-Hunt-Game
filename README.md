@@ -1,10 +1,10 @@
 # eLitmus-Puzzle-Application-Assignment
 
 ### Tech Stack Used
-1. Python
-2. Flask
-3. Flask-Login
-4. SQLAlchemy
+1. JavaScript
+2. React.js
+3. Node.js and Express.js
+4. MongoDB
 
 ### Hosted On - https://elitmus-puzzle.onrender.com/
 <hr>
