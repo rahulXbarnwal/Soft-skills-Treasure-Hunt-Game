@@ -27,7 +27,7 @@ But, to find that treasure box is not so easy , you have to encounter strange pu
 #### Skills assessed  : Curiosity and Attention to detail 
 
 **Prompt**
-You decide to follow John's advice and go to the loaction he mentioned. As you reach the place you find yourself in front of a large gate. There is a lock on the gate that asks you for the entry pass key
+You decide to follow John's advice and go to the location he mentioned. As you reach the place you find yourself in front of a large gate. There is a lock on the gate that asks you for the entry pass key
 You decide to open up the box. Inside you find two items
 1. A picture of key with some text below it
 2. A envelope with Open for Answer written on it
@@ -47,7 +47,7 @@ You are now wondering what will be the key to this lock. Determine the code to u
 - The user curiosity and eye to detail is measured on the basis if he/she can identify the required code by correctlt interpreting the words
 
 ### Level 2 - Cryptic Code
-##### Skills asseses : Curiosity, Eye to detail, Problem Solving
+##### Skills asseses : Curiosity, Attention to detail, Critical Thinking
 **Prompt**
 
 You successfully open the gate and entered the place. It is a long hallway with a lots of doors. You try to open a door but its locked. You start exploring the hallway.
@@ -72,7 +72,7 @@ The user curiosity and eye to detail is measured on the basis if he/she can iden
 It also measures problem solving as user must open up the html code to get the correct code
 
 #### Level 3 -The Old Man's Color Puzzle
-##### Skills assesses  : Concentration, Focus, Reaction Time, Quick Thinking
+##### Skills assesses  : Critical Thinking
 
 **Prompt**: 
 
@@ -80,7 +80,6 @@ You found the code and entered it in the system. The systems does a variety of a
 Solve the puzzle to proceed to the next level
 Guess the Color
 What color is the text?
-10 attempts. Score 6 or the map is lost forever
 
 **Hint** : 
 - Type the color ot the text, not the text
@@ -88,7 +87,7 @@ What color is the text?
 **Dead-End**: The user cannot solve the game
 
 **Solution**: 
-Correct color of solution is entered 5 times
+Green
 
 **How soft sklls is measured**
 
@@ -96,17 +95,13 @@ It is measured by how much quick the user can put out the answer and also how ac
 
 
 #### Level 4 -Unlocking the Gate Again!
-##### Skills assesses  : Concentration, Focus, Reaction Time, Quick Thinking
+##### Skills assesses  : Curiosity, Attention to detail
 
 **Prompt**
 
 You completed the puzzle and the computer presented you with the exact map location of the treasure. But before you could leave to find the treaure, there is a loud slam. The gate has closed itself. And the computer shuts down.
-You reach near the door and find a similar lock to the one you found at entry. You must solve this to move forward.
-
-Rules :
-1. For red arrow, press the arrow key same as arrow direction
-2. For blue arrow, press the arrow key same as direction arrow moves
-3. A wrong combination and you are stuck forever inside
+You reach near the door, now you have to break it. How many times you have to Hit the door to break it ?
+You must solve this to move forward.
 
 Solve the door code to proceed to the next level
 
@@ -115,14 +110,14 @@ Solve the door code to proceed to the next level
 
 **Dead-End**: The user presses wrong key
 
-**Solution** : 5 Consecutive times correct key is pressed
+**Solution** : 4
 
 **How soft sklls is measured**
 
-It is measured by how much quick the user can put out the answer and also how accurate his concentration is. The arrow direction and movement of direction will cause confusion and thus it measures the concentration, focus and reaction time 
+It is measured by how much quick the user can put out the answer and also how accurate his concentration and observation is.
 
 #### Level 5 - Crossing the River!
-##### Skills assesses : Problem Solving and critical analytical approach
+##### Skills assesses : Curiosity, Critical Thinking
 
 **Prompt**
 
@@ -142,7 +137,7 @@ It is measured by how much the user can think out of the box. It encorages out o
 <hr>
 
 
-The whole treasure Hunt Puzzle game assesses different soft skills of  the player to find the epic treasure at the end of the game. There are different  hints and dead ends present in the game with a final solution. Each level stores the number of tries of the user that he took to solve the level.
+The whole treasure Hunt Puzzle game assesses different soft skills of the player to find the epic treasure at the end of the game. There are different hints and dead ends present in the game with a final solution. Each level stores the time taken by the user to solve the level.
 
 
 ## Features
@@ -150,25 +145,27 @@ The whole treasure Hunt Puzzle game assesses different soft skills of  the playe
 - Login and Signup
 - Level Based Approach
 - Lot of soft skills assessed
-- Admin Panel for User Stats
-- Retry approach to figure out solution again
+- Admin Panel for Stats like - Soft Skills, Time Taken, Score Achieved
+- Graphical representation of stats
 - Hints available for all rounds
 - Test coverage
+- LeaderBoard
+- Separate Result Component for every user after they finish the treasure hunt
 
 ## How to Run Locally
 1. Clone the repo
-2. Create and activate virtual env
-3. Install all requirements with `pip install -r requirements.txt`
-4. Add all the environment variables or use the given ones with `source.env`
-5. Run the app with `flask run`
+2. To run the Main Web App, go to frontend folder, run `npm install` command
+3. When all the packages and dependencies are installed then run `npm start` command and the development server will start on `localhost:3000`
+4. To run the `Admin Portal`, go to admin folder, run `npm install` command
+5. When all the packages and dependencies are installed then run `npm start` command and the development server will start
+6. To run the backend part, go to backend folder, run `npm install` command
+7. After all dependencies and packages are installed, run `node index.js` command
 
 ### Other Tools
-#### 1. Admin Creation
-It can be done by running `python manage.py create-admin`
 
-#### 2. Admin Login
+#### Admin Login
 Admin login to view stats can be done via
 ```
-email : admin@test.com
-pass : admin123
+email : rahulbarnwalofficial@gmail.com
+pass : 123456789
 ```
