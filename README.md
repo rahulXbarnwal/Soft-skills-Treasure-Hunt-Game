@@ -71,7 +71,7 @@ Figure out the code to get a step closer to the treasure
 The user curiosity and eye to detail is measured on the basis if he/she can identify the required code by correctlt interpreting the words
 It also measures problem solving as user must open up the html code to get the correct code
 
-#### Level 3 -The Old Man's Color Puzzle
+### Level 3 -The Old Man's Color Puzzle
 ##### Skills assesses  : Critical Thinking
 
 **Prompt**: 
@@ -94,7 +94,7 @@ Green
 It is measured by how much quick the user can put out the answer and also how accurate his concentration is. Brain will process the word not the color and thus it helps to understand concentration
 
 
-#### Level 4 -Unlocking the Gate Again!
+### Level 4 -Unlocking the Gate Again!
 ##### Skills assesses  : Curiosity, Attention to detail
 
 **Prompt**
@@ -116,7 +116,7 @@ Solve the door code to proceed to the next level
 
 It is measured by how much quick the user can put out the answer and also how accurate his concentration and observation is.
 
-#### Level 5 - Crossing the River!
+### Level 5 - Crossing the River!
 ##### Skills assesses : Curiosity, Critical Thinking
 
 **Prompt**
@@ -144,6 +144,9 @@ The whole treasure Hunt Puzzle game assesses different soft skills of the player
 - User Authentication and Authorization
 - Login and Signup
 - Level Based Approach
+- User can not jump to levels by changing the URL
+- Each Level is assigned a timing of 5 minutes
+- When user Refreshes the page, Timer will start from where it was left
 - Lot of soft skills assessed
 - Admin Panel for Stats like - Soft Skills, Time Taken, Score Achieved
 - Graphical representation of stats
