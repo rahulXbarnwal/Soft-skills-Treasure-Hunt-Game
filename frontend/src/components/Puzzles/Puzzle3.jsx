@@ -13,6 +13,7 @@ const Puzzle3 = () => {
   const correctAnswers = questions[2].answers;
   const question = questions[2].text;
   const hints = questions[2].hints;
+  const title = questions[2].title;
 
   useEffect(() => {
     const currentUrl = localStorage.getItem("currentURL");
@@ -26,8 +27,9 @@ const Puzzle3 = () => {
       }, 1000);
     } else {
       clearInterval(intervalId);
-      localStorage.setItem("currentURL", "/Puzzle4");
-      navigate("/Puzzle4");
+      alert("Time's Up!");
+      localStorage.setItem("currentURL", "/result");
+      navigate("/result");
     }
     return () => {
       clearInterval(intervalId);
@@ -43,7 +45,7 @@ const Puzzle3 = () => {
     event.preventDefault();
     if (correctAnswers.includes(answer.toLowerCase())) {
       const timeTaken = 300 - time;
-      const puzzleScore = Math.max(Math.floor((300 - timeTaken) / 3), 0); // Max score of 100
+      const puzzleScore = 100;
       let currScore = Number(localStorage.getItem("totalScore"));
       let currTime = Number(localStorage.getItem("timeTaken"));
       currScore += puzzleScore;
@@ -52,15 +54,20 @@ const Puzzle3 = () => {
       localStorage.setItem("timeTaken", currTime);
       localStorage.setItem("point3", puzzleScore);
       setAnswer("");
+      alert("You Cracked it!");
+      localStorage.setItem("currentURL", "/Puzzle4");
+      navigate("/Puzzle4");
+    } else {
+      alert("Game over! The map was lost forever. You could not figure it out");
+      localStorage.setItem("currentURL", "/result");
+      navigate("/result");
     }
-    localStorage.setItem("currentURL", "/Puzzle4");
-    navigate("/Puzzle4");
   };
 
   return (
     <div className="puzzle-container">
       <div className="timer">
-        <h2 className="question">Puzzle 3</h2>
+        <h4 className="question">Level 3: {title}</h4>
         <div>
           Timer: &nbsp;
           <span id="timer">
@@ -69,7 +76,12 @@ const Puzzle3 = () => {
           </span>
         </div>
       </div>
-      <h4>{question}</h4>
+      {question.map((item, index) => (
+        <h6 key={index}>{item}</h6>
+      ))}
+      <br />
+      <h1 style={{ color: "green", textAlign: "center" }}>YELLOW</h1>
+      <br />
       <form className="answer-form" onSubmit={handleSubmit}>
         <label>
           <input
@@ -83,13 +95,7 @@ const Puzzle3 = () => {
           Submit
         </button>
       </form>
-      <Hints
-        hint1={hints[0]}
-        hint2={hints[1]}
-        hint3={hints[2]}
-        hint4={hints[3]}
-        hint5={hints[4]}
-      />
+      <Hints hints={hints} />
     </div>
   );
 };

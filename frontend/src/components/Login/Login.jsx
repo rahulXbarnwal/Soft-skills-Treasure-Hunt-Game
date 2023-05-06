@@ -4,6 +4,8 @@ import React, { useContext, useState } from "react";
 
 import Api from "../../Api";
 import { AuthContext } from "../../context/AuthContext";
+import ClipLoader from "react-spinners/ClipLoader";
+import NavBar from "../NavBar/NavBar";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +15,7 @@ const Login = () => {
   const { dispatch } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loader, setLoader] = useState(false);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -24,6 +27,7 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoader(true);
     try {
       const res = await axios.post(Api.login, {
         email: email,
@@ -45,37 +49,48 @@ const Login = () => {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     }
+    setLoader(false);
   };
 
   return (
-    <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <>
+      <NavBar />
+      <div className="login-container">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <h1>Login</h1>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={handleEmailChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
+          {loader && (
+            <button type="submit" disabled={true}>
+              <center>
+                <ClipLoader color="white" size={25} />
+              </center>
+            </button>
+          )}
+          {!loader && <button type="submit">Login</button>}
+        </form>
+      </div>
+    </>
   );
 };
 

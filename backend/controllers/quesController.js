@@ -2,6 +2,7 @@ const Question = require("../models/question");
 
 exports.addQues = async (req, res) => {
   const newQues = new Question({
+    title: req.body.title,
     text: req.body.text,
     img: req.body.img,
     answers: req.body.answers,

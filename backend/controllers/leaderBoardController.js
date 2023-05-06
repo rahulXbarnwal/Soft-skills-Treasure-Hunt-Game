@@ -15,7 +15,14 @@ exports.addScore = async (req, res) => {
 
 exports.getAllScores = async (req, res) => {
   try {
-    const scores = await LeaderBoard.find().sort({ score: -1 });
+    const scores = await LeaderBoard.find();
+    scores.sort((a, b) => {
+      if (a.score === b.score) {
+        return a.timeTaken - b.timeTaken;
+      } else {
+        return b.score - a.score;
+      }
+    });
     res.status(200).json(scores);
   } catch (err) {
     res.status(500).json(err);

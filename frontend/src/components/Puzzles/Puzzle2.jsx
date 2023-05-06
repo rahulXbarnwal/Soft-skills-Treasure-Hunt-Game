@@ -11,6 +11,7 @@ const Puzzle2 = () => {
   const [answer, setAnswer] = useState("");
   const questions = JSON.parse(localStorage.getItem("questions"));
   const correctAnswers = questions[1].answers;
+  const title = questions[1].title;
   const question = questions[1].text;
   const hints = questions[1].hints;
 
@@ -26,8 +27,9 @@ const Puzzle2 = () => {
       }, 1000);
     } else {
       clearInterval(intervalId);
-      localStorage.setItem("currentURL", "/Puzzle3");
-      navigate("/Puzzle3");
+      alert("Time's Up!");
+      localStorage.setItem("currentURL", "/result");
+      navigate("/result");
     }
     return () => {
       clearInterval(intervalId);
@@ -41,9 +43,9 @@ const Puzzle2 = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (correctAnswers.includes(answer.toLowerCase())) {
+    if (correctAnswers.includes(answer)) {
       const timeTaken = 300 - time;
-      const puzzleScore = Math.max(Math.floor((300 - timeTaken) / 3), 0); // Max score of 100
+      const puzzleScore = 100;
       let currScore = Number(localStorage.getItem("totalScore"));
       let currTime = Number(localStorage.getItem("timeTaken"));
       currScore += puzzleScore;
@@ -52,15 +54,22 @@ const Puzzle2 = () => {
       localStorage.setItem("timeTaken", currTime);
       localStorage.setItem("point2", puzzleScore);
       setAnswer("");
+      alert("You guessed it right!");
+      localStorage.setItem("currentURL", "/Puzzle3");
+      navigate("/Puzzle3");
+    } else {
+      alert("Wrong Code! Try using a hint");
     }
-    localStorage.setItem("currentURL", "/Puzzle3");
-    navigate("/Puzzle3");
   };
 
   return (
     <div className="puzzle-container">
       <div className="timer">
-        <h2 className="question">Puzzle 2</h2>
+        <div style={{ display: "none" }}>
+          You have looked this far for the code. Congrats You Found it!!! The
+          code is bmXG6kIL
+        </div>
+        <h4 className="question">Level 2: {title}</h4>
         <div>
           Timer: &nbsp;
           <span id="timer">
@@ -69,7 +78,10 @@ const Puzzle2 = () => {
           </span>
         </div>
       </div>
-      <h4>{question}</h4>
+      {question.map((item, index) => (
+        <h6 key={index}>{item}</h6>
+      ))}
+      <br />
       <form className="answer-form" onSubmit={handleSubmit}>
         <label>
           <input
@@ -83,13 +95,7 @@ const Puzzle2 = () => {
           Submit
         </button>
       </form>
-      <Hints
-        hint1={hints[0]}
-        hint2={hints[1]}
-        hint3={hints[2]}
-        hint4={hints[3]}
-        hint5={hints[4]}
-      />
+      <Hints hints={hints} />
     </div>
   );
 };

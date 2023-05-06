@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 
 const QuesSchema = new mongoose.Schema({
-  text: { type: String, required: true },
+  title: { type: String, required: true },
+  text: { type: [String], required: true },
   img: { type: String },
   answers: {
     type: [String],

@@ -1,14 +1,24 @@
 import "./Question.css";
 
-import { Link } from "react-router-dom";
-
-const Question = ({ id, question, answers, hints }) => {
-  const url = `/question/${id}`;
+const Question = ({ level, title, question, answers, hints }) => {
   return (
     <div className="question-container">
       <div className="column">
+        <div className="heading">Level {level}</div>
+      </div>
+      <div className="column">
+        <div className="heading">Title</div>
+        <div className="content">{title}</div>
+      </div>
+      <div className="column">
         <div className="heading">Question</div>
-        <div className="content">{question}</div>
+        <div className="content">
+          {question.map((parts, index) => (
+            <div key={index} className="hint">
+              {parts}
+            </div>
+          ))}
+        </div>
       </div>
       <div className="column">
         <div className="heading">Answers</div>

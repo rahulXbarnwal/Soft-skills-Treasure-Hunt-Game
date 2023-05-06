@@ -7,27 +7,20 @@ import {
   BrowserRouter as Router,
   Routes,
 } from "react-router-dom";
-import { useContext, useEffect } from "react";
 
 import { AuthContext } from "./context/AuthContext";
 import Instruction from "./components/Instruction/Instruction";
 import LeaderBoard from "./components/LeaderBoard/LeaderBoard";
 import Login from "./components/Login/Login";
 import Puzzle1 from "./components/Puzzles/Puzzle1";
-import Puzzle10 from "./components/Puzzles/Puzzle10";
-import Puzzle11 from "./components/Puzzles/Puzzle11";
-import Puzzle12 from "./components/Puzzles/Puzzle12";
 import Puzzle2 from "./components/Puzzles/Puzzle2";
 import Puzzle3 from "./components/Puzzles/Puzzle3";
 import Puzzle4 from "./components/Puzzles/Puzzle4";
 import Puzzle5 from "./components/Puzzles/Puzzle5";
-import Puzzle6 from "./components/Puzzles/Puzzle6";
-import Puzzle7 from "./components/Puzzles/Puzzle7";
-import Puzzle8 from "./components/Puzzles/Puzzle8";
-import Puzzle9 from "./components/Puzzles/Puzzle9";
 import Register from "./components/Register/Register";
 import Result from "./components/Result/Result";
 import { ToastContainer } from "react-toastify";
+import { useContext } from "react";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -36,7 +29,7 @@ function App() {
     return currentUser ? children : <Navigate to="/login" />;
   };
   return (
-    <div className="App">
+    <>
       <ToastContainer />
       <Router>
         <Routes>
@@ -104,76 +97,7 @@ function App() {
                 }
               />
             </Route>
-            <Route path="/Puzzle6">
-              <Route
-                index
-                element={
-                  <RequireAuth>
-                    <Puzzle6 />
-                  </RequireAuth>
-                }
-              />
-            </Route>
-            <Route path="/Puzzle7">
-              <Route
-                index
-                element={
-                  <RequireAuth>
-                    <Puzzle7 />
-                  </RequireAuth>
-                }
-              />
-            </Route>
-            <Route path="/Puzzle8">
-              <Route
-                index
-                element={
-                  <RequireAuth>
-                    <Puzzle8 />
-                  </RequireAuth>
-                }
-              />
-            </Route>
-            <Route path="/Puzzle9">
-              <Route
-                index
-                element={
-                  <RequireAuth>
-                    <Puzzle9 />
-                  </RequireAuth>
-                }
-              />
-            </Route>
-            <Route path="/Puzzle10">
-              <Route
-                index
-                element={
-                  <RequireAuth>
-                    <Puzzle10 />
-                  </RequireAuth>
-                }
-              />
-            </Route>
-            <Route path="/Puzzle11">
-              <Route
-                index
-                element={
-                  <RequireAuth>
-                    <Puzzle11 />
-                  </RequireAuth>
-                }
-              />
-            </Route>
-            <Route path="/Puzzle12">
-              <Route
-                index
-                element={
-                  <RequireAuth>
-                    <Puzzle12 />
-                  </RequireAuth>
-                }
-              />
-            </Route>
+
             <Route path="/result">
               <Route
                 index
@@ -197,7 +121,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
-    </div>
+    </>
   );
 }
 

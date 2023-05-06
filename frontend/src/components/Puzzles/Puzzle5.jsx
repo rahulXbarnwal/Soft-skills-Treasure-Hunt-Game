@@ -8,11 +8,23 @@ const Puzzle5 = () => {
   const [time, setTime] = useState(
     Number(localStorage.getItem("timeLeftPuzzle5")) || 300
   ); // 5 minutes in seconds
-  const [answer, setAnswer] = useState("");
   const questions = JSON.parse(localStorage.getItem("questions"));
-  const correctAnswers = questions[4].answers;
   const question = questions[4].text;
   const hints = questions[4].hints;
+  const title = questions[4].title;
+  const img = questions[4].img;
+
+  const takeRaft = () => {
+    alert("The raft had a hole. You did not reach the treasure");
+    localStorage.setItem("currentURL", "/result");
+    navigate("/result");
+  };
+
+  const gameOver = () => {
+    alert("You touched the water and died");
+    localStorage.setItem("currentURL", "/result");
+    navigate("/result");
+  };
 
   useEffect(() => {
     const currentUrl = localStorage.getItem("currentURL");
@@ -26,8 +38,9 @@ const Puzzle5 = () => {
       }, 1000);
     } else {
       clearInterval(intervalId);
-      localStorage.setItem("currentURL", "/Puzzle6");
-      navigate("/Puzzle6");
+      alert("Time's Up!");
+      localStorage.setItem("currentURL", "/result");
+      navigate("/result");
     }
     return () => {
       clearInterval(intervalId);
@@ -35,32 +48,26 @@ const Puzzle5 = () => {
     };
   }, [time, navigate]);
 
-  const handleInputChange = (event) => {
-    setAnswer(event.target.value);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (correctAnswers.includes(answer.toLowerCase())) {
-      const timeTaken = 300 - time;
-      const puzzleScore = Math.max(Math.floor((300 - timeTaken) / 3), 0); // Max score of 100
-      let currScore = Number(localStorage.getItem("totalScore"));
-      let currTime = Number(localStorage.getItem("timeTaken"));
-      currScore += puzzleScore;
-      currTime += timeTaken;
-      localStorage.setItem("totalScore", currScore);
-      localStorage.setItem("timeTaken", currTime);
-      localStorage.setItem("point5", puzzleScore);
-      setAnswer("");
-    }
-    localStorage.setItem("currentURL", "/Puzzle6");
-    navigate("/Puzzle6");
+    const timeTaken = 300 - time;
+    const puzzleScore = 100;
+    let currScore = Number(localStorage.getItem("totalScore"));
+    let currTime = Number(localStorage.getItem("timeTaken"));
+    currScore += puzzleScore;
+    currTime += timeTaken;
+    localStorage.setItem("totalScore", currScore);
+    localStorage.setItem("timeTaken", currTime);
+    localStorage.setItem("point5", puzzleScore);
+    alert("You found it!");
+    localStorage.setItem("currentURL", "/result");
+    navigate("/result");
   };
 
   return (
     <div className="puzzle-container">
       <div className="timer">
-        <h2 className="question">Puzzle 5</h2>
+        <h4 className="question">Level 5: {title}</h4>
         <div>
           Timer: &nbsp;
           <span id="timer">
@@ -69,27 +76,41 @@ const Puzzle5 = () => {
           </span>
         </div>
       </div>
-      <h4>{question}</h4>
-      <form className="answer-form" onSubmit={handleSubmit}>
-        <label>
-          <input
-            type="text"
-            className="answer-input"
-            onChange={handleInputChange}
-            placeholder="Enter your Answer here"
+      {question.map((item, index) => (
+        <h6 key={index}>{item}</h6>
+      ))}
+      <br />
+      <Hints hints={hints} />
+      <br />
+      <center>
+        <div className="image-wrapper" onClick={takeRaft}>
+          <img
+            src={img}
+            alt=""
+            height="80px"
+            width="90px"
+            className="sample image"
           />
-        </label>
-        <button type="submit" className="submit-button">
-          Submit
+          <div className="overlay">
+            <p>Take the Raft</p>
+          </div>
+        </div>
+        <br />
+        <div
+          style={{
+            display: "block",
+            backgroundColor: "skyblue",
+            height: "250px",
+          }}
+          onMouseOver={gameOver}
+        ></div>
+      </center>
+      <br />
+      <form className="answer-form" onSubmit={handleSubmit}>
+        <button type="submit" className="submit-btn">
+          Get Treasure
         </button>
       </form>
-      <Hints
-        hint1={hints[0]}
-        hint2={hints[1]}
-        hint3={hints[2]}
-        hint4={hints[3]}
-        hint5={hints[4]}
-      />
     </div>
   );
 };

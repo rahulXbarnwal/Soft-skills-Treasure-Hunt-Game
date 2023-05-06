@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 
 import Api from "../../Api";
 import { AuthContext } from "../../context/AuthContext";
+import BounceLoader from "react-spinners/BounceLoader";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -13,10 +14,12 @@ const Result = () => {
   const totalPoints = localStorage.getItem("totalScore");
   const timeTaken = localStorage.getItem("timeTaken");
   const [softSkills, setSoftSkills] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    const skill1 = [1, 2, 3, 4, 5, 8, 9, 10, 11],
-      skill2 = [2, 5, 6, 7, 8, 9, 12],
-      skill3 = [4, 5, 8, 9, 11];
+    const skill1 = [1, 2, 4, 5],
+      skill2 = [1, 2, 4],
+      skill3 = [2, 3, 5];
     let skillScore1 = 0,
       skillScore2 = 0,
       skillScore3 = 0;
@@ -28,15 +31,15 @@ const Result = () => {
       skillScore3 += Number(localStorage.getItem(`point${skill3[i]}`));
     let arr = [
       {
-        name: "Critical Thinking",
+        name: "Curiosity",
         percentage: (skillScore1 / skill1.length).toFixed(2),
       },
       {
-        name: "Creativity",
+        name: "Attention to Detail",
         percentage: (skillScore2 / skill2.length).toFixed(2),
       },
       {
-        name: "Attention to Detail",
+        name: "Critical Thinking",
         percentage: (skillScore3 / skill3.length).toFixed(2),
       },
     ];
@@ -50,7 +53,7 @@ const Result = () => {
             email: localStorage.email,
             timeTaken: timeTaken,
             softSkills: arr,
-            score: (totalPoints / 12).toFixed(2),
+            score: (totalPoints / 5).toFixed(2),
           },
           {
             headers: {
@@ -66,6 +69,7 @@ const Result = () => {
       }
     };
     addData();
+    setLoading(false);
   }, []);
 
   const logout = () => {
@@ -81,40 +85,49 @@ const Result = () => {
   return (
     <div className="result-container">
       <h2>Result</h2>
-      <div className="accuracy">
-        <h5>Soft-Skills %</h5>
-      </div>
-      <div className="soft-skills">
-        {softSkills.map((skill) => (
-          <div key={skill.name} className="skill">
-            <h5>{skill.name}:</h5>
-            <div className="skill-bar">
-              <div
-                className="skill-progress"
-                style={{ width: `${skill.percentage} %` }}
-              >
-                <p>{skill.percentage}%</p>
-              </div>
-            </div>
+      {loading && (
+        <div className="spinner-container">
+          <BounceLoader color="blue" className="page-spinner" />
+        </div>
+      )}
+      {!loading && (
+        <>
+          <div className="accuracy">
+            <h5>Soft-Skills %</h5>
           </div>
-        ))}
-      </div>
-      <div className="total-points">
-        <h5>Total Points:</h5>
-        <p>{(totalPoints / 12).toFixed(2)}/100</p>
-      </div>
-      <div className="total-points">
-        <h5>Time Taken:</h5>
-        <p>{timeTaken} sec</p>
-      </div>
-      <div className="buttons">
-        <button className="leaderboard-button" onClick={leaderBoard}>
-          Leaderboard
-        </button>
-        <button className="logout-button" onClick={logout}>
-          Logout
-        </button>
-      </div>
+          <div className="soft-skills">
+            {softSkills.map((skill) => (
+              <div key={skill.name} className="skill">
+                <h5>{skill.name}:</h5>
+                <div className="skill-bar">
+                  <div
+                    className="skill-progress"
+                    style={{ width: `${skill.percentage} %` }}
+                  >
+                    <p>{skill.percentage}%</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="total-points">
+            <h5>Total Points:</h5>
+            <p>{(totalPoints / 5).toFixed(2)}/100</p>
+          </div>
+          <div className="total-points">
+            <h5>Time Taken:</h5>
+            <p>{timeTaken} sec</p>
+          </div>
+          <div className="buttons">
+            <button className="leaderboard-button" onClick={leaderBoard}>
+              Leaderboard
+            </button>
+            <button className="logout-button" onClick={logout}>
+              Logout
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

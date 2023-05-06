@@ -3,6 +3,7 @@ import "./Dashboard.css";
 import React, { useEffect, useState } from "react";
 
 import Api from "../../Api";
+import BounceLoader from "react-spinners/BounceLoader";
 import NavBar from "../NavBar/NavBar";
 import ScoreGraph from "./ScoreGraph";
 import SkillsGraph from "./SkillsGraph";
@@ -13,6 +14,7 @@ const Dashboard = () => {
   const [scoresData, setScoresData] = useState([]);
   const [timesData, setTimesData] = useState([]);
   const [skillsData, setSkillsData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getScores = async () => {
@@ -48,24 +50,36 @@ const Dashboard = () => {
     getScores();
     getTimes();
     getSkills();
+    setLoading(false);
   }, []);
 
   return (
-    <div className="dashboard">
-      <NavBar />
-      <div className="dashboard__section">
-        <h4 className="dashboard__title">Soft-Skills Analysis</h4>
-        <SkillsGraph data={skillsData} />
+    <>
+      <div className="dashboard">
+        <NavBar />
+        {loading && (
+          <div className="spinner-container">
+            <BounceLoader color="blue" className="page-spinner" />
+          </div>
+        )}
+        {!loading && (
+          <>
+            <div className="dashboard__section">
+              <h4 className="dashboard__title">Soft-Skills Analysis</h4>
+              <SkillsGraph data={skillsData} />
+            </div>
+            <div className="dashboard__section">
+              <h4 className="dashboard__title">Scores Analysis</h4>
+              <ScoreGraph scores={scoresData} />
+            </div>
+            <div className="dashboard__section">
+              <h4 className="dashboard__title">Timing Analysis</h4>
+              <TimeGraph times={timesData} />
+            </div>
+          </>
+        )}
       </div>
-      <div className="dashboard__section">
-        <h4 className="dashboard__title">Scores Analysis</h4>
-        <ScoreGraph scores={scoresData} />
-      </div>
-      <div className="dashboard__section">
-        <h4 className="dashboard__title">Timing Analysis</h4>
-        <TimeGraph times={timesData} />
-      </div>
-    </div>
+    </>
   );
 };
 

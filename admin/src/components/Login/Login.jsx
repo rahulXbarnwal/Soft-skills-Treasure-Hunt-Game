@@ -3,6 +3,7 @@ import "./Login.css";
 import React, { useState } from "react";
 
 import Api from "../../Api";
+import ClipLoader from "react-spinners/ClipLoader";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -10,9 +11,11 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("rahulbarnwalofficial@gmail.com");
   const [password, setPassword] = useState("123456789");
+  const [loader, setLoader] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoader(true);
     try {
       const res = await axios.post(Api.login, {
         email: email,
@@ -31,6 +34,7 @@ function Login() {
     } catch (err) {
       alert(err.message);
     }
+    setLoader(false);
   };
 
   return (
@@ -59,7 +63,14 @@ function Login() {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        {loader && (
+          <button type="submit" disabled={true}>
+            <center>
+              <ClipLoader color="white" size={25} />
+            </center>
+          </button>
+        )}
+        {!loader && <button type="submit">Login</button>}
       </form>
     </div>
   );

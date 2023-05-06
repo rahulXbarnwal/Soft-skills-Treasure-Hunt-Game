@@ -23,7 +23,7 @@ const NavBar = () => {
           <Link to="/questions">Questions</Link>
         </li>
         <li style={{ position: "absolute", right: "5rem" }}>
-          <Link to="/login" onClick={logout}>
+          <Link to="/login" onClick={logout} style={{ color: "red" }}>
             {" "}
             Logout
           </Link>
