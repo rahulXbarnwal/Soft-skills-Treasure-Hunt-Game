@@ -149,7 +149,7 @@ The whole treasure Hunt Puzzle game assesses different soft skills of the player
 - When user Refreshes the page, Timer will start from where it was left
 - Lot of soft skills assessed
 - Admin Panel for Stats like - Soft Skills, Time Taken, Score Achieved
-- Graphical representation of stats
+- Data Analysis using Graphs
 - Hints available for all rounds
 - Test coverage
 - LeaderBoard
