@@ -1,4 +1,4 @@
-# eLitmus-Puzzle-Application-Assignment
+# Soft-skills Treasure Hunt Game
 
 ### Tech Stack Used
 1. JavaScript
