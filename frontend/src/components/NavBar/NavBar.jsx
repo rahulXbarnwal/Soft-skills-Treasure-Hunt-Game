@@ -14,7 +14,7 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <NavLink
         className="navbar-brand ml-4"
-        to="https://admin-portal-elitmus-puzzle.netlify.app/"
+        to="https://admin-portal-treasure-hunt.netlify.app/"
         target="_blank"
       >
         Admin Login
